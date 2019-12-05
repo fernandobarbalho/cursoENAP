@@ -10,7 +10,7 @@ tir_municipio <- itr_for
 tir_municipio <- tir_municipio [-c(5526:5528),]
 
 
-#Subsitituindo os valores ausentes pela média do município
+#Substituindo os valores ausentes pela média do município
 for (i in 1:NROW(tir_municipio)) {
   
   tir_municipio[i,is.na(tir_municipio[i,])] <- mean(t(tir_municipio[i,3:21]), na.rm = TRUE)
