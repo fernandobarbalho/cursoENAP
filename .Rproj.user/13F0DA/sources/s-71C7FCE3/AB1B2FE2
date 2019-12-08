@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1575800656578.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "AB1B2FE2",
+    "lastKnownWriteTime" : 1575800600,
+    "last_content_update" : 1575800948552,
+    "path" : "~/GitHub/cursoENAP/tratamento dos dados.R",
+    "project_path" : "tratamento dos dados.R",
+    "properties" : {
+        "cursorPosition" : "57,35",
+        "scrollLine" : "38"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
