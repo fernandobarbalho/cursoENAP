@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1575821600951.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "7C269223",
+    "lastKnownWriteTime" : 8389754706581218143,
+    "last_content_update" : 1575821600951,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "9CEE0FC",
+        "caption" : "analise_mensagem_tf_idf",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=analise_mensagem_tf_idf&cache_key=9CEE0FC",
+        "displayedObservations" : 10833,
+        "environment" : "",
+        "expression" : "analise_mensagem_tf_idf",
+        "object" : "analise_mensagem_tf_idf",
+        "preview" : 0,
+        "totalObservations" : 10833,
+        "variables" : 7
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

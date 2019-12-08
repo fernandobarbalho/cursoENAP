@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1575821155349.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "1177F38A",
+    "lastKnownWriteTime" : 2200018046048,
+    "last_content_update" : 1575821155349,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "C1625B2E",
+        "caption" : "analise_mensagem",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=analise_mensagem&cache_key=C1625B2E",
+        "displayedObservations" : "17434",
+        "environment" : "",
+        "expression" : "analise_mensagem",
+        "object" : "analise_mensagem",
+        "preview" : "0",
+        "totalObservations" : "17434",
+        "variables" : "7"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
