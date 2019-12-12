@@ -1,0 +1,90 @@
+---
+title: "Pedaço de mim"
+output: 
+  flexdashboard::flex_dashboard:
+    social: menu
+    source_code: embed
+runtime: shiny    
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(dplyr)
+#library(tidytext)
+library(wordcloud)
+library(tidyr)
+#library(scales)
+#library(ggplot2)
+#library(igraph)
+#library(ggraph)
+#library(widyr)
+library(shiny)
+
+
+```
+Nuvem de palavras
+===================================== 
+
+
+Inputs {.sidebar data-width=200}
+-----------------------------------------------------------------------
+
+
+```{r}
+sliderInput("num_Max", "Informe a quantidade máxima de palavras a serem exibidas na nuvem de palavras", value=40,
+min=10, max = 40) 
+selectInput("i_ano", 
+            "Ano",
+            choices = c(2013:2018),
+            selected = 2013,
+            multiple = TRUE)
+
+```
+
+
+Column
+-----------------------------------------------------------------------
+
+### Nuvem Chico Buarque
+Palavras mais frequentemente utilizadas nos posts de twitter da Receita Federal do Brasil.
+
+
+```{r}
+load("analise_mensagem.RData")
+set.seed(4363)
+
+#[comentários](https://www.facebook.com/ChicoBuarque/posts/1845353682210350)
+renderPlot({
+
+print(input$i_ano)  
+print(input$num_Max)
+analise_mensagem %>%
+  filter(substr(ano_mes,1,4) %in% input$i_ano) %>%
+  count(palavra)%>%
+  with(wordcloud(palavra,n,max.words = input$num_Max, colors=brewer.pal(6,"Dark2"),random.order=FALSE))
+
+
+})
+```
+
+Tabela
+=====================================
+
+### Tabela
+
+```{r}
+library(data.table)
+library(DT)
+
+load("df_tl_rfb.RData")
+
+renderDataTable({
+  datatable(df_tl_rfb[c(2,3,5,13,14,16)], fillContainer = TRUE,extensions = "Buttons", rownames = FALSE, options = list(
+    pageLength = NROW(df_tl_rfb), 
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel', 'pdf', 'print')
+  ) )
+  
+})
+
+```
