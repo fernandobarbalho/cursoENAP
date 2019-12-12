@@ -17,3 +17,8 @@ https://www.youtube.com/watch?v=jbkSRLYSojo
 Um livro que nos dá esperança de que estamos no caminho certo como humanidade:
 
 https://www.amazon.com.br/Factfulness-Reasons-World-Things-English-ebook/dp/B0756J1LLV/ref=sr_1_2?adgrpid=80767881069&gclid=CjwKCAiAxMLvBRBNEiwAKhr-nN92Ls12Qm6gfvObpmFycMzsfgoRgINN5TtEVEsfqRVunjus5WDjGBoCg2sQAvD_BwE&hvadid=392914252441&hvdev=c&hvlocphy=1001541&hvnetw=g&hvpos=1t1&hvqmt=e&hvrand=9637462370756914543&hvtargid=kwd-433085693214&hydadcr=5623_10696872&keywords=fact+fullness&qid=1576072865&sr=8-2
+
+
+Função para gerar um arquivo csv
+
+write.csv(itr_municipio, file = "itr_municipios_csv.csv")
