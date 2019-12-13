@@ -22,3 +22,8 @@ https://www.amazon.com.br/Factfulness-Reasons-World-Things-English-ebook/dp/B075
 Função para gerar um arquivo csv
 
 write.csv(itr_municipio, file = "itr_municipios_csv.csv")
+
+
+Link para Ressignificando o Resultado do Tesouro Nacional (storytelling com dashboard)
+
+http://www.tesourotransparente.gov.br/historias/ressignificando-o-resultado-do-tesouro-nacional
