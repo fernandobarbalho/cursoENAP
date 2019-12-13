@@ -1,0 +1,123 @@
+---
+title: "Um acompanhamento da série temporal de receitas admnistradas"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+## Tópico 1 
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quam nibh, dictum sit amet odio et, molestie pellentesque arcu. Donec consectetur diam ac iaculis aliquam. Nunc augue quam, porta ac eros finibus, hendrerit imperdiet est. Vivamus mollis condimentum odio, in ullamcorper elit pellentesque eu. Sed ultricies lorem ut ornare hendrerit. Phasellus sed libero at lectus porta viverra. Suspendisse in diam bibendum, luctus justo quis, placerat nulla. Phasellus nec finibus nulla, at faucibus dui. Integer volutpat libero sed dolor pulvinar, in ornare lorem sagittis. Nunc sed fermentum mauris, eget sollicitudin tortor. Etiam lacinia sagittis luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida, ipsum vitae rutrum rhoncus, elit massa sollicitudin dolor, non blandit odio leo vitae sapien. Aenean imperdiet dolor blandit diam elementum, eget dictum massa ullamcorper.
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(viridis)
+
+load("adm_cluster.RData")
+
+adm_cluster %>%
+gather(key = "ano", value = "valor_arrecadado", -c(1:2,16)) %>%
+  ggplot(aes(x= ano, y= valor_arrecadado/10^6 )) +
+  scale_color_viridis(discrete=TRUE) +
+  geom_line(aes(group = municipio)) +
+  theme_light() +
+  theme(
+    axis.text.x =  element_text(angle = 90, hjust = 1),
+    panel.grid = element_blank()
+  )+
+  #scale_y_continuous(labels=function(x) format(x, big.mark = ".", scientific = FALSE))
+  scale_y_log10(labels=function(x) format(x, big.mark = ".", scientific = FALSE))
+
+```
+
+## Tópico 2
+
+Mauris vitae purus tortor. Mauris accumsan elit sit amet sem mattis feugiat. Maecenas egestas lectus id nulla efficitur, pharetra aliquam nulla faucibus. Mauris euismod quam in feugiat bibendum. Phasellus velit turpis, suscipit non cursus ultricies, feugiat id justo. Duis aliquet viverra metus at sollicitudin. Integer eu aliquam dolor. Mauris metus nunc, tempus vel nisl ut, rhoncus dictum massa. Aenean urna lacus, scelerisque eget consectetur et, maximus eget lorem. Morbi vel massa vitae libero fermentum finibus in at eros. Nulla posuere tortor in arcu eleifend, in congue orci vestibulum. Maecenas finibus imperdiet rhoncus.
+
+```{r}
+adm_cluster %>%
+  gather(key = "ano", value = "valor_arrecadado", -c(1:2,16)) %>%
+  ggplot(aes(x= ano, y= valor_arrecadado/10^6 )) +
+  scale_color_viridis(discrete=TRUE) +
+  geom_line(aes(group = municipio,  color= factor(cluster))) +
+  theme_light() +
+  theme(
+    axis.text.x =  element_text(angle = 90, hjust = 1),
+    panel.grid = element_blank()
+  )+
+ #scale_y_continuous(labels=function(x) format(x, big.mark = ".", scientific = FALSE))+
+  scale_y_log10(labels=function(x) format(x, big.mark = ".", scientific = FALSE))
+
+```
+
+```{r}
+adm_cluster %>%
+  gather(key = "ano", value = "valor_arrecadado", -c(1:2,16)) %>%
+  ggplot(aes(x= ano, y= valor_arrecadado/10^6 )) +
+  scale_color_viridis(discrete=TRUE) +
+  geom_line(aes(group = municipio,  color= factor(cluster))) +
+  theme_light() +
+  theme(
+    axis.text.x =  element_text(angle = 90, hjust = 1),
+    panel.grid = element_blank()
+  )+
+ scale_y_continuous(labels=function(x) format(x, big.mark = ".", scientific = FALSE))
+  #scale_y_log10(labels=function(x) format(x, big.mark = ".", scientific = FALSE))
+
+```
+
+
+
+## Tópico 3
+
+Fusce sit amet maximus magna. Quisque interdum volutpat tincidunt. Phasellus quis tortor ac leo ullamcorper molestie. Pellentesque suscipit dictum massa, in aliquam libero. Aliquam tempus turpis et ultrices porttitor. Sed turpis augue, porta euismod velit suscipit, condimentum vestibulum orci. Fusce pellentesque sem sed ante fringilla mollis. Mauris eu convallis nunc. Morbi ligula leo, gravida nec ligula id, congue molestie leo. Curabitur malesuada lorem in interdum tincidunt. Suspendisse auctor eget nisi id varius.
+
+```{r}
+adm_cluster %>%  
+  group_by(cluster) %>%
+  summarise(
+    quantidade= n()
+  ) %>%
+  ggplot()  +
+  geom_col(aes(x=factor(cluster), y= quantidade, fill= factor(cluster)))  +
+  scale_color_viridis(discrete=TRUE) +
+  theme_light() +
+  theme(
+    
+    panel.grid = element_blank()
+  ) +
+
+  coord_flip()
+
+```
+
+```{r}
+adm_cluster %>%
+  gather(key = "ano", value = "valor_arrecadado", -c(1:2,16)) %>%
+  group_by(cluster) %>%
+  summarise(
+    total= sum(valor_arrecadado, na.rm = TRUE)
+  ) %>%
+  ggplot()  +
+  geom_col(aes(x=factor(cluster), y= total, fill= factor(cluster)))  +
+  scale_color_viridis(discrete=TRUE) +
+  theme_light() +
+  theme(
+    
+    panel.grid = element_blank()
+  )+
+  coord_flip()
+
+```
+
+
+## Tópico 4
+
+Ut nec tincidunt justo. Nulla odio velit, iaculis blandit vulputate et, aliquet vitae magna. Maecenas sodales urna ut mauris pharetra, ac congue tortor maximus. Cras luctus, tortor in bibendum mollis, elit ligula posuere urna, eu cursus enim diam non dolor. Aliquam placerat sem quis enim mattis, nec venenatis felis tincidunt. Praesent at augue ac eros pulvinar vehicula et sed massa. In sed volutpat erat, eu aliquet lacus. Phasellus finibus, orci eget maximus tempor, leo urna efficitur leo, sit amet bibendum purus sapien a nibh. Morbi dictum dui vitae nunc bibendum condimentum. Donec quis nisl hendrerit, efficitur arcu at, imperdiet sem. Donec dolor nulla, convallis nec viverra sed, placerat eu est. Aliquam sit amet nulla cursus, malesuada sapien rutrum, euismod quam. Integer lacus erat, luctus nec ipsum id, rhoncus aliquam nibh. Suspendisse eget elit varius, faucibus neque id, auctor sem. Duis ornare velit libero, sed lobortis orci sagittis et.
+
+## Tópico 5
+
+Morbi molestie tellus vestibulum interdum feugiat. Pellentesque leo neque, blandit vitae fringilla egestas, interdum non purus. Nulla at tellus lorem. Nunc feugiat imperdiet venenatis. Phasellus ornare nisl eget arcu congue, sed elementum massa pellentesque. Quisque lacus lacus, suscipit id tortor eget, consequat congue arcu. Etiam consectetur elit id dui aliquet, nec suscipit turpis euismod. Nam lacinia finibus lectus, ut placerat leo dapibus vitae. Sed urna lectus, tempus quis semper eu, aliquam quis neque. Quisque nec facilisis nulla, et facilisis mauris. Ut sem libero, maximus vitae molestie quis, mollis et justo. Sed vulputate mi blandit purus dictum facilisis. Suspendisse viverra tincidunt odio sed commodo. Fusce tempus varius lacus, nec aliquet ante ultrices ac. Curabitur suscipit auctor porta.
