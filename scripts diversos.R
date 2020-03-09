@@ -79,6 +79,12 @@ chegadas_cluster<-
   prep_model%>%
   mutate(cluster = model$clustering) 
 
+chegadas_cluster %>%
+  ggplot(aes(x=factor(cluster), y= total/1000))+
+  geom_jitter(aes(color= factor(cluster))) 
+#geom_boxplot()
+
+
 #Total de entradas por cluster
 chegadas_cluster%>%
   group_by(cluster) %>%
@@ -116,6 +122,20 @@ chegadas_cluster%>%
   coord_flip()
 
 
+
+chegadas_2018%>%
+  #filter(País=="Argentina") %>%
+  group_by(UF, Via)%>%
+  summarise(
+    total=sum(Chegadas)
+  ) %>%
+  ungroup()%>%
+  mutate(UF=reorder(UF, total))%>%
+  ggplot()+
+  geom_col(aes(x=UF,y=total, fill= Via))+
+  coord_flip()
+
+  
 
 df <- data.frame(x = c(10, 4, 1, 6, 3, 1, 1))
 df %>% top_n(2)
